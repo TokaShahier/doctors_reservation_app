@@ -59,14 +59,15 @@ class _ProfilePageState extends State<ProfilePage> {
                 children: [
                   CircleAvatar(
                     radius: 60,
-                    backgroundColor: Theme.of(
-                      context,
-                    ).primaryColor.withValues(alpha: 0.1),
-                    child: Icon(
-                      Icons.person,
-                      size: 60,
-                      color: Theme.of(context).primaryColor,
-                    ),
+                    backgroundImage:
+                        profile.avatarUrl != null &&
+                            profile.avatarUrl!.isNotEmpty
+                        ? NetworkImage(profile.avatarUrl!)
+                        : null,
+                    child:
+                        profile.avatarUrl == null || profile.avatarUrl!.isEmpty
+                        ? const Icon(Icons.person, size: 60)
+                        : null,
                   ),
                   const SizedBox(height: 16),
                   Text(

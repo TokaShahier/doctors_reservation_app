@@ -1,18 +1,23 @@
-import 'package:supabase_flutter/supabase_flutter.dart' as supabase;
 import '../../domain/entities/profile_entity.dart';
 
 class ProfileModel extends ProfileEntity {
   const ProfileModel({
     required super.id,
-    required super.email,
     required super.name,
+    required super.email,
+    super.avatarUrl,
   });
 
-  factory ProfileModel.fromSupabaseUser(supabase.User user) {
+  factory ProfileModel.fromJson(Map<String, dynamic> json) {
     return ProfileModel(
-      id: user.id,
-      email: user.email ?? '',
-      name: user.userMetadata?['name'] as String? ?? 'Unknown',
+      id: json['id'] as String,
+      name: json['name'] as String,
+      email: json['email'] as String,
+      avatarUrl: json['avatar_url'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {'id': id, 'name': name, 'email': email, 'avatar_url': avatarUrl};
   }
 }

@@ -40,10 +40,22 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
         password: password,
         data: {'name': name},
       );
-      if (response.user == null) {
+
+      final user = response.user;
+
+      if (user == null) {
         throw const ServerFailure('Registration failed.');
       }
-      return UserModel.fromSupabaseUser(response.user!);
+
+      // Create profile record
+      await supabaseClient.from('profiles').insert({
+        'id': user.id,
+        'name': name,
+        'email': email,
+        'avatar_url': null,
+      });
+
+      return UserModel.fromSupabaseUser(user);
     } catch (e) {
       throw ServerFailure(e.toString());
     }

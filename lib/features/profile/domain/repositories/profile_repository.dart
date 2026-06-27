@@ -5,6 +5,11 @@ import '../entities/profile_entity.dart';
 
 abstract class ProfileRepository {
   Future<Either<Failure, ProfileEntity>> getProfile();
-  Future<Either<Failure, ProfileEntity>> updateProfile(String name);
+
+  Future<Either<Failure, ProfileEntity>> updateProfile({
+    required String name,
+    String? avatarUrl,
+  });
+
   Future<Either<Failure, List<AppointmentEntity>>> getBookingHistory();
 }

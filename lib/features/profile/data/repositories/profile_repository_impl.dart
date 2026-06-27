@@ -23,9 +23,15 @@ class ProfileRepositoryImpl implements ProfileRepository {
   }
 
   @override
-  Future<Either<Failure, ProfileEntity>> updateProfile(String name) async {
+  Future<Either<Failure, ProfileEntity>> updateProfile({
+    required String name,
+    String? avatarUrl,
+  }) async {
     try {
-      final profile = await remoteDataSource.updateProfile(name);
+      final profile = await remoteDataSource.updateProfile(
+        name: name,
+        avatarUrl: avatarUrl,
+      );
       return Right(profile);
     } on ServerFailure catch (e) {
       return Left(e);
