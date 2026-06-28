@@ -29,6 +29,7 @@ import '../../features/profile/domain/repositories/profile_repository.dart';
 import '../../features/profile/domain/usecases/get_booking_history_usecase.dart';
 import '../../features/profile/domain/usecases/get_profile_usecase.dart';
 import '../../features/profile/domain/usecases/update_profile_usecase.dart';
+import '../../features/profile/domain/usecases/update_avatar_usecase.dart';
 import '../../features/profile/presentation/bloc/profile_bloc.dart';
 
 final sl = GetIt.instance;
@@ -112,12 +113,14 @@ Future<void> init() async {
         getProfileUseCase: sl(),
         updateProfileUseCase: sl(),
         getBookingHistoryUseCase: sl(),
+        updateAvatarUseCase: sl(),
       ));
 
   // Use cases
   sl.registerLazySingleton(() => GetProfileUseCase(sl()));
   sl.registerLazySingleton(() => UpdateProfileUseCase(sl()));
   sl.registerLazySingleton(() => GetBookingHistoryUseCase(sl()));
+  sl.registerLazySingleton(() => UpdateAvatarUseCase(sl()));
 
   // Repository
   sl.registerLazySingleton<ProfileRepository>(

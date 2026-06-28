@@ -14,4 +14,6 @@ class AppConstants {
     defaultValue:
         'sb_publishable_ZCMFRYvlDkNK8O4614CVUg_WAQO7fV_', // Optional: fallback for dev
   );
+
+  static const String profileImagesBucket = 'profile-images';
 }
