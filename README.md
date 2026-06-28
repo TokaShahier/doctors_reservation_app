@@ -410,11 +410,3 @@ SOFTWARE.
 ```
 
 ---
-
-<div align="center">
-
-Made with ❤️ using Flutter & Supabase
-
-⭐ Star this repo if you found it helpful!
-
-</div>
